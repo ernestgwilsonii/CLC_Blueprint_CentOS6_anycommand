@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+    <Metadata>
+        <UUID>99b8f0e2-f1f7-4ba3-bb22-332e54a68445</UUID>
+        <Name>anycommand_centos6x</Name>
+        <Description>Runs any arbitrary command you type (it will prompt you) on CentOS 6x and then emails the output to an address of your choice.</Description>
+    </Metadata>
+    <Parameters>
+        <Parameter Name="T3.Server.IPAddress" Hint="" Type="String" Variable="T3.Server.IPAddress" Prompt="None" Global="false" Default="" Required="true"/>
+        <Parameter Name="EMAILREPORTTO" Hint="Email address to send output to" Type="String" Variable="EMAILREPORTTO" Prompt="Build" Global="false" Default="Ernest.Wilson@ctl.io" Required="true"/>
+        <Parameter Name="COMMAND" Hint="What command to you want to send? Example: df -hP" Type="String" Variable="COMMAND" Prompt="Build" Global="false" Default="df -hP" Required="true"/>
+    </Parameters>
+    <Execution>
+        <Mode>Ssh</Mode>
+        <Command>install.sh '${T3.Server.IPAddress}' '${EMAILREPORTTO}' '${COMMAND}'</Command>
+        <Persistent>false</Persistent>
+        <RebootOnSuccess>false</RebootOnSuccess>
+    </Execution>
+</Manifest>
